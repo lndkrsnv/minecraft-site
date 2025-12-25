@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Скачивание сборки — Инструкция</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="assets/favicon.ico">
+    <style>
+        .download-wrapper {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 3rem;
+        }
+
+        .download-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .download-header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .download-header p {
+            color: var(--text-muted, #a0a7b7);
+            font-size: 0.95rem;
+        }
+
+        .download-info-card {
+            margin: 2rem 0 2.5rem;
+            padding: 1.5rem 1.8rem;
+            border-radius: 18px;
+            background: rgba(0, 0, 0, 0.55);
+            border: 1px dashed rgba(255, 255, 255, 0.25);
+            color: #e4e7f0;
+            font-size: 0.95rem;
+        }
+
+        .download-info-card strong {
+            color: #f28f1a;
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .video-block {
+            background: rgba(0, 0, 0, 0.55);
+            border-radius: 16px;
+            padding: 1.1rem 1.2rem 1.4rem;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .video-block h2 {
+            font-size: 1rem;
+            margin-bottom: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.09em;
+            color: #f5f7fa;
+        }
+
+        .video-block p {
+            font-size: 0.85rem;
+            color: #a0a7b7;
+            margin-bottom: 0.7rem;
+        }
+
+        .video-wrapper {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000;
+            box-shadow: 0 14px 30px rgba(0,0,0,0.7);
+        }
+
+        .video-wrapper iframe,
+        .video-wrapper video {
+            display: block;
+            width: 100%;
+            height: 100%;
+            min-height: 220px;
+            border: none;
+        }
+
+        .back-link {
+            margin-top: 2.5rem;
+            text-align: center;
+        }
+
+        .back-link a {
+            color: #f28f1a;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .download-wrapper {
+                padding: 1.8rem 1rem 2.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="download-wrapper">
+        <!-- Скрытая ссылка для автоскачивания -->
+        <a id="autoDownloadLink"
+           href="files/mod-pack.zip"
+           download
+           style="display:none;">Скачать</a>
+
+        <div class="download-header">
+            <h1>Сборка загружается…</h1>
+            <p>Если загрузка не началась автоматически — нажмите Ctrl+J и проверьте список загрузок или обновите страницу.</p>
+        </div>
+
+        <div class="download-info-card">
+            <p>
+                Скачивание файла <strong>mod-pack.zip</strong> должно начаться автоматически.
+                Не закрывайте вкладку, пока не убедитесь, что архив загрузился.
+            </p>
+            <p>
+                Ниже — две подробные инструкции: для Minecraft с лицензией и без лицензии.
+                Выберите вариант, который подходит именно вам.
+            </p>
+        </div>
+
+        <div class="videos-grid">
+            <div class="video-block">
+                <h2>Установка с лицензией</h2>
+                <p>Пошаговая инструкция, как установить сборку на лицензионный Minecraft / лаунчер.</p>
+                <div class="video-wrapper">
+                    <!-- Вариант 1: YouTube / другой хостинг -->
+                    
+                    <iframe
+                        src="https://www.youtube.com/watch?v=8FJMo9z74Eo"
+                        title="Инструкция: установка с лицензией"
+                        allowfullscreen
+                        loading="lazy">
+                    </iframe>
+                    <!--
+                    // Вариант 2: свой файл:
+                    <video controls poster="assets/license-poster.jpg">
+                        <source src="assets/piratka.mp4" type="video/mp4">
+                        Ваш браузер не поддерживает видео.
+                    </video>
+                    -->
+                </div>
+            </div>
+
+            <div class="video-block">
+                <h2>Установка без лицензии</h2>
+                <p>Инструкция для пиратских лаунчеров, где и как указать эту сборку.</p>
+                <div class="video-wrapper">
+                    <iframe
+                        src="https://www.youtube.com/watch?v=XOy8UbPeQTY"
+                        title="Инструкция: установка без лицензии"
+                        allowfullscreen
+                        loading="lazy">
+                    </iframe>
+                    <!--
+                    <video controls poster="assets/nolicense-poster.jpg">
+                        <source src="assets/nolicense-install.mp4" type="video/mp4">
+                        Ваш браузер не поддерживает видео.
+                    </video>
+                    -->
+                </div>
+            </div>
+        </div>
+
+        <div class="back-link">
+            <a href="index.html">← Вернуться на страницу статуса сервера</a>
+        </div>
+    </div>
+
+    <script>
+        // Автоматический старт скачивания при загрузке страницы
+        window.addEventListener('load', function () {
+            const link = document.getElementById('autoDownloadLink');
+            if (link) {
+                link.click(); // создаёт обычное скачивание файла через <a download>[web:83][web:89]
+            }
+        });
+    </script>
+</body>
+</html>

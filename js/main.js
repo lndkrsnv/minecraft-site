@@ -1,5 +1,5 @@
 function copyIP() {
-    const ip = 'your-server-ip:25565'; // Замените на ваш IP
+    const ip = 'mc.worldofskufs.ru';
     navigator.clipboard.writeText(ip).then(() => {
         const btn = document.querySelector('.copy-btn');
         const originalText = btn.textContent;

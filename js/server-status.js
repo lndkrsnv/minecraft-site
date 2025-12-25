@@ -1,4 +1,4 @@
-const SERVER_IP = 'your-server-ip:25565'; // Замените на IP вашего сервера
+const SERVER_IP = '31.28.30.23:25565';
 const API_URL = `https://api.mcsrvstat.us/2/${SERVER_IP}`;
 
 async function fetchServerStatus() {
@@ -21,7 +21,6 @@ function updateStatus(online, data) {
     const card = document.getElementById('statusCard');
     const indicator = document.getElementById('statusIndicator');
     const statusText = document.getElementById('statusText');
-    const statusLight = document.getElementById('statusLight');
     
     if (online && data) {
         card.className = 'status-card status-online';
