@@ -110,7 +110,6 @@
 </head>
 <body>
     <div class="download-wrapper">
-        <!-- Скрытая ссылка для автоскачивания -->
         <a id="autoDownloadLink"
            href="files/mod-pack.zip"
            download
@@ -137,21 +136,10 @@
                 <h2>Установка с лицензией</h2>
                 <p>Пошаговая инструкция, как установить сборку на лицензионный Minecraft / лаунчер.</p>
                 <div class="video-wrapper">
-                    <!-- Вариант 1: YouTube / другой хостинг -->
-                    
-                    <iframe
-                        src="https://www.youtube.com/watch?v=8FJMo9z74Eo"
-                        title="Инструкция: установка с лицензией"
-                        allowfullscreen
-                        loading="lazy">
-                    </iframe>
-                    <!--
-                    // Вариант 2: свой файл:
-                    <video controls poster="assets/license-poster.jpg">
-                        <source src="assets/piratka.mp4" type="video/mp4">
+                    <video controls poster="assets/licence.jpg">
+                        <source src="assets/licence.mp4" type="video/mp4">
                         Ваш браузер не поддерживает видео.
                     </video>
-                    -->
                 </div>
             </div>
 
@@ -159,18 +147,10 @@
                 <h2>Установка без лицензии</h2>
                 <p>Инструкция для пиратских лаунчеров, где и как указать эту сборку.</p>
                 <div class="video-wrapper">
-                    <iframe
-                        src="https://www.youtube.com/watch?v=XOy8UbPeQTY"
-                        title="Инструкция: установка без лицензии"
-                        allowfullscreen
-                        loading="lazy">
-                    </iframe>
-                    <!--
-                    <video controls poster="assets/nolicense-poster.jpg">
-                        <source src="assets/nolicense-install.mp4" type="video/mp4">
+                    <video controls poster="assets/piratka.jpg">
+                        <source src="assets/piratka.mp4" type="video/mp4">
                         Ваш браузер не поддерживает видео.
                     </video>
-                    -->
                 </div>
             </div>
         </div>
@@ -185,7 +165,7 @@
         window.addEventListener('load', function () {
             const link = document.getElementById('autoDownloadLink');
             if (link) {
-                link.click(); // создаёт обычное скачивание файла через <a download>[web:83][web:89]
+                link.click();
             }
         });
     </script>
