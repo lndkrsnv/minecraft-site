@@ -1,0 +1,433 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-dark: #05070b;
+    --bg-panel: rgba(10, 14, 22, 0.85);
+    --accent: #f28f1a;
+    --accent-strong: #f2501a;
+    --text-main: #f5f7fa;
+    --text-muted: #8f9bb2;
+    --border-soft: rgba(255, 255, 255, 0.08);
+    --glow-accent: 0 0 30px rgba(242, 143, 26, 0.5);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--text-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Размытый индустриальный фон */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: url("../assets/industrial-bg.jpg") center/cover no-repeat fixed;
+    filter: blur(10px) brightness(0.35);
+    transform: scale(1.05);
+    z-index: -2;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at top, rgba(242,143,26,0.35), transparent 55%),
+                radial-gradient(circle at bottom, rgba(90,163,255,0.25), transparent 55%),
+                linear-gradient(135deg, rgba(5,7,11,0.9), rgba(7,11,19,0.3));
+    z-index: -1;
+}
+
+/* Неоновая сетка под всем, как техпол */
+.container {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.container::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 80px 80px;
+    opacity: 0.4;
+    mix-blend-mode: screen;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Шапка / логотип техносборки */
+.header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+.server-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.9rem 1.6rem;
+    border-radius: 999px;
+    background: radial-gradient(circle at 0 0, rgba(242,143,26,0.4), transparent 55%),
+                radial-gradient(circle at 100% 100%, rgba(90,163,255,0.4), transparent 55%),
+                rgba(5,7,11,0.85);
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.7);
+    backdrop-filter: blur(20px);
+}
+
+.logo-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    box-shadow: var(--glow-accent);
+}
+
+.header h1 {
+    font-size: clamp(1.7rem, 4vw, 2.6rem);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-main);
+}
+
+.header h1::after {
+    content: "TECH PACK";
+    display: block;
+    font-size: 0.65rem;
+    letter-spacing: 0.28em;
+    color: var(--accent);
+    margin-top: 0.2rem;
+}
+
+/* Карточка статуса — стекло/металл */
+.status-card {
+    position: relative;
+    background: linear-gradient(145deg, rgba(8, 11, 20, 0.88), rgba(5, 8, 15, 0.92));
+    border-radius: 22px;
+    padding: 2.2rem;
+    margin-bottom: 2.4rem;
+    border: 1px solid var(--border-soft);
+    box-shadow: 0 26px 60px rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(22px) saturate(1.3);
+    overflow: hidden;
+}
+
+.status-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(120deg,
+            rgba(242,143,26,0.04),
+            transparent 40%,
+            rgba(90,163,255,0.04),
+            transparent 75%);
+    pointer-events: none;
+}
+
+.status-card::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.03);
+    pointer-events: none;
+}
+
+/* Индикатор статуса в стиле контрольной панели */
+.status-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.8rem;
+    padding-bottom: 1.4rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.status-text {
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.status-badge {
+    padding: 0.25rem 0.9rem;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    border: 1px solid rgba(255,255,255,0.22);
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.status-light {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid #000;
+    box-shadow: 0 0 20px currentColor;
+    margin-left: 0.2rem;
+}
+
+/* Цвета онлайна/офлайна + анимация */
+.status-online .status-text::before {
+    content: "ONLINE";
+    color: var(--accent);
+}
+
+.status-offline .status-text::before {
+    content: "OFFLINE";
+    color: #ff3b3b;
+}
+
+.status-online .status-light {
+    background: #7adf3a;
+    color: #7adf3a;
+    animation: pulse-online 1.6s infinite ease-in-out;
+}
+
+.status-offline .status-light {
+    background: #ff3b3b;
+    color: #ff3b3b;
+    animation: pulse-offline 1.3s infinite ease-in-out;
+}
+
+@keyframes pulse-online {
+    0%, 100% { transform: scale(1); opacity: 0.85; }
+    50% { transform: scale(1.25); opacity: 1; }
+}
+
+@keyframes pulse-offline {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(0.75); opacity: 1; }
+}
+
+/* Информация о сервере как "диагностическая таблица" */
+.server-info {
+    display: grid;
+    gap: 1.1rem;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+}
+
+.info-row {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.8rem 1rem;
+    background: rgba(255,255,255,0.01);
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+.label {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+}
+
+.value {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.motd {
+    font-style: normal;
+    font-size: 0.95rem;
+    color: #c4ccd8 !important;
+    white-space: pre-wrap;
+}
+
+/* Список игроков как "ячейки контроллеров" */
+.players-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 0.75rem;
+    margin-top: 0.2rem;
+}
+
+.player-avatar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.7rem 0.9rem;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(242,143,26,0.15), rgba(242,143,26,0.04));
+    border: 1px solid rgba(242,143,26,0.35);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.7);
+    font-size: 0.85rem;
+}
+
+.player-avatar::before {
+    content: "";
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: radial-gradient(circle at 30% 20%, #fafafa, #c3c3c3);
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.4);
+}
+
+.player-avatar span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Блок скачивания как "инженерный терминал" */
+.download-section {
+    text-align: center;
+    margin: 2.6rem 0 1.5rem;
+}
+
+.download-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.1rem 2.8rem;
+    border-radius: 999px;
+    border: 1px solid rgba(242,143,26,0.7);
+    color: var(--text-main);
+    background: radial-gradient(circle at 0 0, rgba(242,143,26,0.4), transparent 55%),
+                linear-gradient(135deg, #25140a, #5a2b13);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    box-shadow: 0 18px 32px rgba(0,0,0,0.75), var(--glow-accent);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.download-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg,
+        transparent 0%,
+        rgba(255,255,255,0.2) 45%,
+        transparent 100%);
+    opacity: 0;
+    transform: translateX(-60%);
+    transition: opacity 0.25s, transform 0.25s;
+}
+
+.download-btn:hover::before {
+    opacity: 1;
+    transform: translateX(40%);
+}
+
+.download-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 24px 40px rgba(0,0,0,0.85), var(--glow-accent);
+}
+
+.btn-icon {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+/* IP блока как панели с портом */
+.server-ip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1.1rem 1.6rem;
+    margin-bottom: 1.5rem;
+    background: rgba(4, 6, 11, 0.9);
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 18px 36px rgba(0,0,0,0.8);
+    backdrop-filter: blur(18px);
+}
+
+.server-ip code {
+    background: rgba(0,0,0,0.7);
+    padding: 0.65rem 1.3rem;
+    border-radius: 999px;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+}
+
+.copy-btn {
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: linear-gradient(135deg, rgba(17, 23, 34, 0.9), rgba(9, 12, 20, 0.9));
+    color: var(--text-main);
+    padding: 0.65rem 1.3rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+}
+
+.copy-btn:hover {
+    background: linear-gradient(135deg, rgba(26, 36, 54, 0.95), rgba(11, 17, 29, 0.95));
+    box-shadow: 0 12px 24px rgba(0,0,0,0.7);
+    transform: translateY(-1px);
+}
+
+/* Футер */
+.footer {
+    margin-top: auto;
+    text-align: center;
+    padding-top: 3rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+    .container {
+        padding: 1.6rem 1rem;
+    }
+
+    .status-card {
+        padding: 1.7rem 1.3rem;
+    }
+
+    .info-row {
+        grid-template-columns: 1fr;
+    }
+
+    .server-ip {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .download-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}

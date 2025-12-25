@@ -1,0 +1,66 @@
+const SERVER_IP = 'your-server-ip:25565'; // Замените на IP вашего сервера
+const API_URL = `https://api.mcsrvstat.us/2/${SERVER_IP}`;
+
+async function fetchServerStatus() {
+    try {
+        const response = await fetch(API_URL);
+        const data = await response.json();
+        
+        if (data.online) {
+            updateStatus(true, data);
+        } else {
+            updateStatus(false, data);
+        }
+    } catch (error) {
+        console.error('Ошибка получения статуса:', error);
+        updateStatus(false, null);
+    }
+}
+
+function updateStatus(online, data) {
+    const card = document.getElementById('statusCard');
+    const indicator = document.getElementById('statusIndicator');
+    const statusText = document.getElementById('statusText');
+    const statusLight = document.getElementById('statusLight');
+    
+    if (online && data) {
+        card.className = 'status-card status-online';
+        indicator.className = 'status-indicator status-online';
+        statusText.textContent = '🟢 Сервер онлайн';
+        
+        document.getElementById('playersOnline').textContent = data.players?.online || 0;
+        document.getElementById('maxPlayers').textContent = data.players?.max || '-';
+        document.getElementById('version').textContent = data.version;
+        document.getElementById('motd').textContent = data.motd?.clean || 'Нет MOTD';
+        
+        updatePlayersList(data.players?.list || []);
+    } else {
+        card.className = 'status-card status-offline';
+        indicator.className = 'status-indicator status-offline';
+        statusText.textContent = '🔴 Сервер оффлайн';
+        
+        document.getElementById('playersOnline').textContent = '-';
+        document.getElementById('maxPlayers').textContent = '-';
+        document.getElementById('version').textContent = '-';
+        document.getElementById('motd').textContent = '-';
+        
+        document.getElementById('playersList').innerHTML = '';
+    }
+}
+
+function updatePlayersList(players) {
+    const container = document.getElementById('playersList');
+    container.innerHTML = '';
+    
+    players.slice(0, 8).forEach(player => {
+        const avatar = document.createElement('div');
+        avatar.className = 'player-avatar';
+        avatar.title = player;
+        avatar.textContent = player.charAt(0).toUpperCase();
+        container.appendChild(avatar);
+    });
+}
+
+// Запуск каждые 30 секунд
+fetchServerStatus();
+setInterval(fetchServerStatus, 30000);
