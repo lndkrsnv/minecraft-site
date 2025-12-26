@@ -1,4 +1,4 @@
-const SERVER_HOST = '192.168.2.80';  // ← IP вашего MC сервера
+const SERVER_HOST = '127.0.0.1';  // ← IP вашего MC сервера
 const API_BASE_URL = 'http://127.0.0.1:18888/api/minecraft/status';
 
 async function fetchServerStatus() {
