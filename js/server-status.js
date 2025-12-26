@@ -1,5 +1,5 @@
 const SERVER_HOST = '127.0.0.1';  // ← IP вашего MC сервера
-const API_BASE_URL = 'http://127.0.0.1:18888/api/minecraft/status';
+const API_BASE_URL = '/api/minecraft/status';
 
 async function fetchServerStatus() {
     try {
@@ -52,7 +52,7 @@ function updateStatus(online, data) {
 function updatePlayersList(players) {
     const container = document.getElementById('playersList');
     container.innerHTML = '';
-    
+
     // Адаптировано под структуру {name, id} из библиотеки
     (players || []).slice(0, 8).forEach(player => {
         const avatar = document.createElement('div');
@@ -62,7 +62,5 @@ function updatePlayersList(players) {
         container.appendChild(avatar);
     });
 }
-
-console.log('Hello World');
 
 fetchServerStatus();
