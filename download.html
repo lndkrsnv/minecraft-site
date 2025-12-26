@@ -8,9 +8,9 @@
     <link rel="icon" href="assets/favicon.ico">
     <style>
         .download-wrapper {
-            max-width: 980px;
+            max-width: 880px;
             margin: 0 auto;
-            padding: 2.5rem 1.5rem 3rem;
+            padding: 2.5rem 1.5rem 2.4rem;
         }
 
         .download-header {
@@ -20,53 +20,59 @@
 
         .download-header h1 {
             font-size: 1.8rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
+            font-weight: 650;
+            letter-spacing: -0.02em;
+            color: var(--text-main, #111827);
         }
 
         .download-header p {
-            color: var(--text-muted, #a0a7b7);
+            color: var(--text-muted, #6b7280);
             font-size: 0.95rem;
         }
 
         .download-info-card {
-            margin: 2rem 0 2.5rem;
-            padding: 1.5rem 1.8rem;
+            margin: 2rem 0 2.3rem;
+            padding: 1.4rem 1.6rem;
             border-radius: 18px;
-            background: rgba(0, 0, 0, 0.55);
-            border: 1px dashed rgba(255, 255, 255, 0.25);
-            color: #e4e7f0;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 14px 30px rgba(15, 23, 42, 0.06);
+            color: #111827;
             font-size: 0.95rem;
         }
 
         .download-info-card strong {
-            color: #f28f1a;
+            color: var(--accent, #2563eb);
+            font-weight: 600;
         }
 
         .videos-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.8rem;
+            gap: 1.6rem;
         }
 
         .video-block {
-            background: rgba(0, 0, 0, 0.55);
+            background: #ffffff;
             border-radius: 16px;
-            padding: 1.1rem 1.2rem 1.4rem;
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 1.1rem 1.3rem 1.4rem;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
         }
 
         .video-block h2 {
-            font-size: 1rem;
-            margin-bottom: 0.7rem;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
             text-transform: uppercase;
-            letter-spacing: 0.09em;
-            color: #f5f7fa;
+            letter-spacing: 0.12em;
+            color: #111827;
         }
 
         .video-block p {
             font-size: 0.85rem;
-            color: #a0a7b7;
-            margin-bottom: 0.7rem;
+            color: #6b7280;
+            margin-bottom: 0.75rem;
         }
 
         .video-wrapper {
@@ -74,7 +80,7 @@
             border-radius: 12px;
             overflow: hidden;
             background: #000;
-            box-shadow: 0 14px 30px rgba(0,0,0,0.7);
+            box-shadow: 0 10px 22px rgba(15, 23, 42, 0.35);
         }
 
         .video-wrapper iframe,
@@ -87,14 +93,15 @@
         }
 
         .back-link {
-            margin-top: 2.5rem;
+            margin-top: 2.4rem;
             text-align: center;
         }
 
         .back-link a {
-            color: #f28f1a;
+            color: var(--accent, #2563eb);
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            font-weight: 500;
         }
 
         .back-link a:hover {
@@ -103,7 +110,7 @@
 
         @media (max-width: 768px) {
             .download-wrapper {
-                padding: 1.8rem 1rem 2.4rem;
+                padding: 1.9rem 1rem 2.2rem;
             }
         }
     </style>
@@ -161,7 +168,6 @@
     </div>
 
     <script>
-        // Автоматический старт скачивания при загрузке страницы
         window.addEventListener('load', function () {
             const link = document.getElementById('autoDownloadLink');
             if (link) {
