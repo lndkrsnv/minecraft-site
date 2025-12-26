@@ -1,12 +1,11 @@
-const SERVER_IP = '31.28.30.23:25565';
-const API_URL = `https://api.mcsrvstat.us/2/${SERVER_IP}`;
+const SERVER_HOST = '192.168.2.80';  // ← IP вашего MC сервера
+const API_BASE_URL = 'http://127.0.0.1:18888/api/minecraft/status';
 
 async function fetchServerStatus() {
     try {
-        const response = await fetch(API_URL);
+        const response = await fetch(`${API_BASE_URL}/${SERVER_HOST}`);
         const data = await response.json();
-        
-        if (data.online) {
+        if (response.ok && data.server) {
             updateStatus(true, data);
         } else {
             updateStatus(false, data);
@@ -27,14 +26,16 @@ function updateStatus(online, data) {
         indicator.className = 'status-indicator status-online';
         statusText.textContent = '🟢 Сервер онлайн';
 
+        // Адаптировано под структуру вашего API
         const onlinePlayers = data.players?.online ?? 0;
         const maxPlayers = data.players?.max ?? '-';
         document.getElementById('playersCount').textContent = `${onlinePlayers}/${maxPlayers}`;
 
-        document.getElementById('version').textContent = data.version || '-';
-        document.getElementById('motd').textContent = data.motd?.clean || 'Нет MOTD';
+        document.getElementById('version').textContent = data.version?.name || '-';
+        document.getElementById('motd').textContent = data.description || 'Нет MOTD';
 
-        updatePlayersList(data.players?.list || []);
+        // Игроки (sample из TCP query)
+        updatePlayersList(data.players?.sample || []);
     } else {
         card.className = 'status-card status-offline';
         indicator.className = 'status-indicator status-offline';
@@ -52,15 +53,16 @@ function updatePlayersList(players) {
     const container = document.getElementById('playersList');
     container.innerHTML = '';
     
-    players.slice(0, 8).forEach(player => {
+    // Адаптировано под структуру {name, id} из библиотеки
+    (players || []).slice(0, 8).forEach(player => {
         const avatar = document.createElement('div');
         avatar.className = 'player-avatar';
-        avatar.title = player;
-        avatar.textContent = player;
+        avatar.title = player.name || player;  // name или fallback на строку
+        avatar.textContent = player.name || player;
         container.appendChild(avatar);
     });
 }
 
-// Запуск каждые 30 секунд
+console.log('Hello World');
+
 fetchServerStatus();
-setInterval(fetchServerStatus, 30000);
