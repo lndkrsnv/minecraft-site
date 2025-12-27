@@ -75,21 +75,85 @@
             margin-bottom: 0.75rem;
         }
 
-        .video-wrapper {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            background: #000;
-            box-shadow: 0 10px 22px rgba(15, 23, 42, 0.35);
+        .download-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1rem;
         }
 
-        .video-wrapper iframe,
-        .video-wrapper video {
-            display: block;
-            width: 100%;
-            height: 100%;
-            min-height: 220px;
+        .download-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 0.8rem 1.2rem;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-decoration: none;
+            color: #ffffff;
+            transition: all 0.2s ease;
             border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.15);
+        }
+
+        .download-btn:active {
+            transform: translateY(0);
+        }
+
+        .curseforge-btn {
+            background: linear-gradient(135deg, #f16436, #111111);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+        }
+
+        .curseforge-btn:hover {
+            background: linear-gradient(135deg, #ff6e3b, #000000);
+        }
+
+        .readme-btn {
+            background: linear-gradient(135deg, #6b7280, #4b5563);
+            box-shadow: 0 4px 12px rgba(107, 114, 128, 0.3);
+        }
+
+        .readme-btn:hover {
+            background: linear-gradient(135deg, #4b5563, #374151);
+        }
+
+        .curseforge-site-btn {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .curseforge-site-btn:hover {
+            background: linear-gradient(135deg, #1d4ed8, #1e40af);
+        }
+
+        .mini-instruction,
+        .troubleshooting {
+            margin-top: 1.4rem;
+            padding: 1rem;
+            border-radius: 12px;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            font-size: 0.9rem;
+            color: #111827;
+        }
+
+        .mini-instruction p,
+        .troubleshooting p {
+            margin: 0.5rem 0;
+        }
+
+        .mini-instruction ol {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
         }
 
         .back-link {
@@ -116,64 +180,64 @@
     </style>
 </head>
 <body>
-    <div class="download-wrapper">
-        <a id="autoDownloadLink"
-           href="files/mod-pack.zip"
-           download
-           style="display:none;">Скачать</a>
+<div class="download-wrapper">
+    <div class="videos-grid">
+        <div class="video-block">
+            <h2>Установка с лицензией</h2>
+            <p>Пошаговая инструкция, как установить сборку на лицензионный Minecraft / лаунчер.</p>
 
-        <div class="download-header">
-            <h1>Сборка загружается…</h1>
-            <p>Если загрузка не началась автоматически — нажмите Ctrl+J и проверьте список загрузок или обновите страницу.</p>
-        </div>
-
-        <div class="download-info-card">
-            <p>
-                Скачивание файла <strong>mod-pack.zip</strong> должно начаться автоматически.
-                Не закрывайте вкладку, пока не убедитесь, что архив загрузился.
-            </p>
-            <p>
-                Ниже — две подробные инструкции: для Minecraft с лицензией и без лицензии.
-                Выберите вариант, который подходит именно вам.
-            </p>
-        </div>
-
-        <div class="videos-grid">
-            <div class="video-block">
-                <h2>Установка с лицензией</h2>
-                <p>Пошаговая инструкция, как установить сборку на лицензионный Minecraft / лаунчер.</p>
-                <div class="video-wrapper">
-                    <video controls poster="assets/licence.jpg">
-                        <source src="assets/licence.mp4" type="video/mp4">
-                        Ваш браузер не поддерживает видео.
-                    </video>
-                </div>
+            <div class="download-buttons">
+                <a href="https://www.curseforge.com/download/app" class="download-btn curseforge-btn" target="_blank">
+                    <span class="btn-icon">⬇️</span>
+                    <span class="btn-text">Скачать CurseForge</span>
+                </a>
+                <a href="https://www.curseforge.com/minecraft/modpacks/all-the-mods-10/files/7361423" class="download-btn curseforge-site-btn" target="_blank">
+                    <span class="btn-icon">🌐</span>
+                    <span class="btn-text">Сборка на CurseForge</span>
+                </a>
             </div>
 
-            <div class="video-block">
-                <h2>Установка без лицензии</h2>
-                <p>Инструкция для пиратских лаунчеров, где и как указать эту сборку.</p>
-                <div class="video-wrapper">
-                    <video controls poster="assets/piratka.jpg">
-                        <source src="assets/piratka.mp4" type="video/mp4">
-                        Ваш браузер не поддерживает видео.
-                    </video>
-                </div>
+            <div class="mini-instruction">
+                <p><strong>Инструкция:</strong></p>
+                <ol>
+                    <li>Установите CurseForge App.</li>
+                    <li>Запустите CurseForge, выберите Minecraft.</li>
+                    <li>Найдите сборку <strong>All the Mods 10 - ATM10</strong> и нажмите «Install».</li>
+                    <li>Дождитесь установки, затем нажмите «Play».</li>
+                </ol>
             </div>
         </div>
 
-        <div class="back-link">
-            <a href="index.html">← Вернуться на страницу статуса сервера</a>
+        <div class="video-block">
+            <h2>Установка без лицензии</h2>
+            <p>Инструкция для пиратских лаунчеров, где и как указать эту сборку.</p>
+
+            <div class="download-buttons">
+                <a href="files/CurseForge.exe" class="download-btn curseforge-btn" target="_blank">
+                    <span class="btn-icon">⬇️</span>
+                    <span class="btn-text">Скачать CurseForge</span>
+                </a>
+            </div>
+
+            <div class="mini-instruction">
+                <p><strong>Инструкция:</strong></p>
+                <ol>
+                    <li>Установите CurseForge App.</li>
+                    <li>Запустите CurseForge, выберите вариант без авторизации.</li>
+                    <li>Найдите сборку <strong>All the Mods 10 - ATM10</strong> и нажмите «Install».</li>
+                    <li>На верху нажмите три точки и выберите "Open Modding Folder".</li>
+                    <li>В Tlauncher создайте новую сборку Neoforge 1.21.1 21.1.215.</li>
+                    <li>Откройте папку нового модпака.</li>
+                    <li>Скопируйте содержимое из папки, открытой в пункте 5, в папку нового модпака.</li>
+                    <li>Запустите!</li>
+                </ol>
+            </div>
         </div>
     </div>
 
-    <script>
-        window.addEventListener('load', function () {
-            const link = document.getElementById('autoDownloadLink');
-            if (link) {
-                link.click();
-            }
-        });
-    </script>
+    <div class="back-link">
+        <a href="index.html">← Вернуться на страницу статуса сервера</a>
+    </div>
+</div>
 </body>
 </html>
